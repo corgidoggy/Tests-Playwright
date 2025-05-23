@@ -6,5 +6,4 @@ test('Get all prloducts list', async ({ request }) => {
   console.log(data);
   expect(response.status()).toBe(200);
   expect(response.ok()).toBeTruthy();
-}); 
-//*
+});
