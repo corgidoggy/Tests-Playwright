@@ -7,3 +7,4 @@ test('Get all prloducts list', async ({ request }) => {
   expect(response.status()).toBe(200);
   expect(response.ok()).toBeTruthy();
 }); 
+//*
