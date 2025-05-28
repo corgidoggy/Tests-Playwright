@@ -35,4 +35,3 @@ test("add to cart faield", async ({ page }) => {
   //Logout
   await login.logout();
 });
-//*
