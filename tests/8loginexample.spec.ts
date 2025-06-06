@@ -112,11 +112,26 @@ test('Download invoice after purchase order', async ({ page }) => {
 });
 test("Verify Scroll Up using 'Arrow' button and Scroll Down functionality", async ({ page }) => {
     await page.goto ('http://automationexercise.com');
-    await page.waitForLoadState('networkidle');
     await page.getByRole('textbox', { name: 'Your email address' }).click();;
     await page.locator('#susbscribe_email').fill('Test123456@example.com');
     await page.locator('.fa.fa-arrow-circle-o-right').click();
     await page.getByRole('heading', { name: 'Full-Fledged practice website' }).click();
     await expect(page.getByRole('heading', { name: 'Full-Fledged practice website' })).toBeVisible();
+});
+test("Verify Scroll Up using 'Arrow' button without Scroll Down functionality", async ({ page }) => {
+    await page.goto ('http://automationexercise.com');
+    await page.getByRole('textbox', { name: 'Your email address' }).click();;
+    await expect(page.getByRole('heading', { name: 'Subscription' })).toBeVisible();
+    await page.getByRole('heading', { name: 'Full-Fledged practice website' }).click();
+    await expect(page.getByRole('heading', { name: 'Full-Fledged practice website' })).toBeVisible();
+});
+test('Add to cart from Recommended items', async ({ page }) => {
+    await page.goto('http://automationexercise.com');
+    await page.getByRole('heading', { name: 'recommended items'}).click();
+    await expect(page.getByRole('heading', { name: 'Recommended Items' })).toBeVisible();
+    await page.locator('div:nth-child(2) > div > .product-image-wrapper > .single-products > .productinfo > .btn').first().click();
+    await expect (page.getByText('Your product has been added')).toBeVisible();
+    await page.getByRole('link', { name: 'View Cart' }).click();
+    await expect(page.getByRole('row', { name: 'Product Image Stylish Dress' })).toBeVisible();
 });
 });
